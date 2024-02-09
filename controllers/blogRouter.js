@@ -10,8 +10,8 @@ hashPasswordGenerator = async(pass)=>{
 }
 
 router.post("/signUp",async(req,res)=>{
-    let data = req.body
-    //let {data}={"data":req.body}
+    //let data = req.body
+    let {data}={"data":req.body}
     let password = data.password
 
     hashPasswordGenerator(password).then((hashedPassword)=>{
@@ -28,6 +28,36 @@ router.post("/signUp",async(req,res)=>{
 
 })
 
-//router.post("sign_in",async(req,res))
+router.post("/signIn",async(req,res)=>{
+    let data = req.body
+    let emailId = req.body.emailid
+    let result = await blogModel.findOne({"emailid":emailId}) 
+    if (!result) {
+        return res.json({
+            "status":"invalid username"
+        })
+        
+    } 
+    console.log(data)
+    let dbPassword = result.password
+    let inputPassword = req.body.password
+    console.log(dbPassword)
+    console.log(inputPassword)
+    
+    const match= await bcrypt.compare(inputPassword,dbPassword)
+    if (!match) {
+        return res.json(
+            {
+                "status":"invalid password"
+            }
+        )
+    }
+
+    res.json(
+      {
+          "status":"success"
+      }
+    )
+  })
 
 module.exports = router
