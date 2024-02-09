@@ -14,4 +14,6 @@ router.post("/signIn",async(req,res)=>{
     })
 })
 
+router.post("sign_in",async(req,res))
+
 module.exports = router
