@@ -5,8 +5,8 @@ const postSchema = mongoose.Schema(
         userid:{
             type:mongoose.Schema.Types.ObjectId,
             required:true,
-            ref:"blog" 
-            // reference to objectId in 'blog' collections
+            ref:"blogs" 
+            // reference to objectId in 'blogs' collections
         },
         post:{
             type:String,
