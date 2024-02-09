@@ -5,7 +5,7 @@ const router = express.Router()
 
 
 
-router.post("/signIn",async(req,res)=>{
+router.post("/signUp",async(req,res)=>{
     let data = req.body
     let blogModelObj = new blogModel(data)
     let result = await blogModelObj.save()
@@ -13,5 +13,7 @@ router.post("/signIn",async(req,res)=>{
         "status":"success"
     })
 })
+
+router.post("sign_in",async(req,res))
 
 module.exports = router
