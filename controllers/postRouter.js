@@ -27,4 +27,15 @@ router.post("/view-myposts",async(req,res)=>{
     res.json(result)
 })
 
+router.post("/delete",async(req,res)=>{
+
+    let data = req.body
+    let result = await postModel.deleteOne(data)
+    res.json(
+        {
+            "status":"success"
+        }
+    )
+})
+
 module.exports=router
